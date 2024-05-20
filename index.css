@@ -1,0 +1,36 @@
+body{
+    margin: 0;
+    padding: 0;
+    /* width: 100vw; */
+    height: 100vh;
+    text-align: center;
+    display:flex;
+    align-items: center;
+   
+    justify-content: center;
+    background-color:#eaf4fe;
+}   
+h1{
+    color:blue;
+    /* margin: 50%; */
+    /* display: inline-block; */
+}
+.cont{
+    text-align: center;
+   
+    height:300px;
+    width:300px;
+}
+.play-button{
+    background-color:white;
+    height: 50px;
+    width:180px;
+    font-size: 20px;
+    border-color: rgb(11, 167, 234);
+    color:#58a5ea;
+    
+}
+.play-button:hover{
+    background-color: blue;
+    color:white;
+}
