@@ -31,13 +31,15 @@ const questions = [
  let choice3Element = document.getElementById('choice3');
  let choice4Element = document.getElementById('choice4');
 
- //assigning a variable for each field
+ //assigning a variable for each field by calling the tags
   
- const currentQuestionIndex = 0;
+let currentQuestionIndex = 0;
+let score=0;
   
   function displayQuestion() {
+    // console.log('displayQuestion called, currentQuestionIndex:', currentQuestionIndex);
     //displaying questions given in array
-   const currentQuestion = questions[currentQuestionIndex];
+   let currentQuestion = questions[currentQuestionIndex];
     questionElement.textContent = currentQuestion.question;
     choice1Element.textContent = currentQuestion.choice1;
     choice2Element.textContent = currentQuestion.choice2;
@@ -49,52 +51,63 @@ const questions = [
     // Add event listeners to choices
     
     // assigning options to a variable
-    choice1Element = document.getElementById('1opt');
-    choice2Element = document.getElementById('2opt');
-    choice3Element = document.getElementById('3opt');
-    choice4Element = document.getElementById('4opt');
-    choice1Element.addEventListener('click', () => checkAnswer(1, currentQuestion.answer));
-    choice2Element.addEventListener('click', () => checkAnswer(2, currentQuestion.answer));
-    choice3Element.addEventListener('click', () => checkAnswer(3, currentQuestion.answer));
-    choice4Element.addEventListener('click', () => checkAnswer(4, currentQuestion.answer));
+    choice1Element_ = document.getElementById('1opt');
+    choice2Element_ = document.getElementById('2opt');
+    choice3Element_ = document.getElementById('3opt');
+    choice4Element_ = document.getElementById('4opt');
+    choice1Element_.addEventListener('click', () => checkAnswer(1, currentQuestion.answer));
+    choice2Element_.addEventListener('click', () => checkAnswer(2, currentQuestion.answer));
+    choice3Element_.addEventListener('click', () => checkAnswer(3, currentQuestion.answer));
+    choice4Element_.addEventListener('click', () => checkAnswer(4, currentQuestion.answer));
     
-    resetChoiceColors();
-    currentQuestionIndex+=1;
-    if(currentQuestionIndex<3){
-    displayQuestion();
-}
+    document.getElementById('score_int').textContent = score;
+    document.getElementById('no_que').textContent = (currentQuestionIndex+1)+'/3'
+
   }
   function checkAnswer(selectedChoice, correctAnswer) {
+    resetChoiceColors();
     if (selectedChoice === correctAnswer) {
       // Correct answer
-      const choiceElement = document.getElementById(`${selectedChoice}opt`);
-      choiceElement.style.backgroundColor = 'green';
-    } else {
+      const choseElement = document.getElementById(`${selectedChoice}opt`);
+      choseElement.style.backgroundColor = 'green';
+      score+=5;
+    }else {
       // Incorrect answer
-      const choiceElement = document.getElementById(`${selectedChoice}opt`);
-      choiceElement.style.backgroundColor = 'red';
+      const choseElement = document.getElementById(`${selectedChoice}opt`);
+      choseElement.style.backgroundColor = 'red';
       const correctChoiceElement = document.getElementById(`${correctAnswer}opt`);
       correctChoiceElement.style.backgroundColor= 'green';
     }
+  
+    setTimeout(() => {
+      resetChoiceColors();
+      currentQuestionIndex += 1;
+      if (currentQuestionIndex <= questions.length) {
+        displayQuestion();
+      }else{
+        
+       setTimeout(gameover,1000);
+      }
+    }, 1000);
+
   }
 
-//  const x=document.querySelector(".choice");
-//   x.addEventListener("click",()=>{
-//     if(x.innerHTML === '<style>' && currentQuestionIndex===0){
-//         x.style.color=green;
-//     }
-//   })
+  function gameover(){
+    window.location.href = 'end.html';
+    // console.log(score);
+    // document.getElementById('final-score').textContent = score;
+  }
+  // export function game(){
+  //   document.getElementById('final').textContent = score;
+  // }
+  
+
 function resetChoiceColors(){
-    document.getElementById('1opt').style.backgroundColor= 'white';
-    document.getElementById('2opt').style.backgroundColor= 'white';
-    document.getElementById('3opt').style.backgroundColor= 'white';
-    document.getElementById('4opt').style.backgroundColor= 'white';
+  document.getElementById('1opt').style.backgroundColor= 'white';
+  document.getElementById('2opt').style.backgroundColor= 'white';
+  document.getElementById('3opt').style.backgroundColor= 'white';
+  document.getElementById('4opt').style.backgroundColor= 'white';
+  // document.getElementById('choice-label').style.backgroundColor= '#55a4e9';
 }
 
-//   function checkanswer(){
-     
-//   }
-  
   displayQuestion();
-//   displayQuestion();
-//   displayQuestion();

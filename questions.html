@@ -6,10 +6,24 @@
 
     </head>
     <body>
+        <div class="heading">
+            <div class="number">
+                <h3>Questions</h3>
+                <div class="bar">
+                    <div class="1bar"></div>
+                    <div class="2bar"></div>
+                    <div class="3bar"></div>
+                </div>
+                <span id="no_que">0/3</span>
+            </div>
+            <div class="score"><h3 id="score_word">Score</h3><span id="score_int">0</span></div>
+        </div>
+
+        <div class="quesbox">
         <div class="ques-1">
             <h2 id="question">what is the answer to this question?</h2>
             <div class="choices">
-                <div class="choice" id="1opt">
+                <div class="choice" id="1opt" >
                     <span class="choice-label">A</span>
                     <label id="choice1">choice 1</label>
                 </div>
@@ -27,6 +41,7 @@
                 </div>
             </div>
 
+        </div>
         </div>
        
         <script src="questions.js"></script>
